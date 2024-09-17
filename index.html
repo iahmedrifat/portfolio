@@ -946,45 +946,45 @@
   <script src="assets/js/main.js"></script>
 
   <script>
-    const form = document.getElementById('contactForm');
+      const form = document.getElementById('contactForm');
     const loading = document.querySelector('.loading');
     const errorMessage = document.querySelector('.error-message');
     const sentMessage = document.querySelector('.sent-message');
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-      loading.style.display = 'block';
-      errorMessage.style.display = 'none';
-      sentMessage.style.display = 'none';
+        loading.style.display = 'block';  // Show the loading message
+        errorMessage.style.display = 'none';  // Hide any previous error message
+        sentMessage.style.display = 'none';  // Hide any previous success message
 
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const subject = document.getElementById('subject').value;
-      const message = document.getElementById('message').value;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
 
-      const telegramMessage = `New Contact Form Submission:\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`;
+        const telegramMessage = `New Contact Form Submission:\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`;
 
-      const botToken = '7475954611:AAE1bhqQnv0Erso705BTc6L9S1gJPmjjG64';
-      const chatId = '5755109067';
-      const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(telegramMessage)}`;
+        const botToken = '7475954611:AAE1bhqQnv0Erso705BTc6L9S1gJPmjjG64';
+        const chatId = '5755109067';
+        const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(telegramMessage)}`;
 
-      fetch(telegramApiUrl)
-        .then(response => response.json())
-        .then(data => {
-          loading.style.display = 'none';
-          if (data.ok) {
-            sentMessage.style.display = 'block';
-          } else {
-            errorMessage.textContent = 'Error sending message to Telegram.';
-            errorMessage.style.display = 'block';
-          }
-        })
-        .catch(error => {
-          loading.style.display = 'none';
-          errorMessage.textContent = 'Error sending message to Telegram: ' + error;
-          errorMessage.style.display = 'block';
-        });
+        fetch(telegramApiUrl)
+            .then(response => response.json())
+            .then(data => {
+                loading.style.display = 'none';  // Hide loading message
+                if (data.ok) {
+                    sentMessage.style.display = 'block';  // Show success message
+                } else {
+                    errorMessage.textContent = 'Error sending message to Telegram.';
+                    errorMessage.style.display = 'block';  // Show error message
+                }
+            })
+            .catch(error => {
+                loading.style.display = 'none';  // Hide loading message
+                errorMessage.textContent = 'Error sending message to Telegram: ' + error;
+                errorMessage.style.display = 'block';  // Show error message
+            });
     });
   </script>
 
