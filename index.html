@@ -972,7 +972,7 @@
       fetch(telegramApiUrl)
         .then(response => response.json())
         .then(data => {
-          loading.style.display = 'none';
+          loading.style.display = 'block';
           if (data.ok) {
             sentMessage.style.display = 'block';
           } else {
