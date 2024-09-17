@@ -838,7 +838,7 @@
           </div>
 
           <div class="col-lg-7">
-            <form id="contactForm" class="php-email-formx">
+            <form id="contactForm" method="post" action="javascript:void(0);" class="php-email-formx">
               <!-- Form fields -->
 
 
@@ -963,7 +963,7 @@
       const subject = document.getElementById('subject').value;
       const message = document.getElementById('message').value;
 
-      const telegramMessage = `New Contact Form Submission:\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`;
+      const telegramMessage = `Contact Form Submission:\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`;
 
       const botToken = '7475954611:AAE1bhqQnv0Erso705BTc6L9S1gJPmjjG64';
       const chatId = '5755109067';
