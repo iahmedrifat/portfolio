@@ -982,7 +982,7 @@
         })
         .catch(error => {
           loading.style.display = 'none';
-          errorMessage.textContent = 'Error sending message to Telegram: ' + error;
+          errorMessage.textContent = 'Error sending message to: ' + error;
           errorMessage.style.display = 'block';
         });
     });
