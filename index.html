@@ -946,13 +946,13 @@
   <script src="assets/js/main.js"></script>
 
   <script>
- const form = document.getElementById('contactForm');
+const form = document.getElementById('contactForm');
 const loading = document.querySelector('.loading');
 const errorMessage = document.querySelector('.error-message');
 const sentMessage = document.querySelector('.sent-message');
 
 form.addEventListener('submit', function (e) {
-  e.preventDefault(); // Prevent form from submitting the default way
+  e.preventDefault(); // Prevent form default submission
 
   // Display loading state
   loading.style.display = 'block';
@@ -971,24 +971,35 @@ form.addEventListener('submit', function (e) {
   const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(telegramMessage)}`;
 
   fetch(telegramApiUrl)
-    .then(response => response.json())
-    .then(data => {
+    .then(response => {
       loading.style.display = 'none'; // Hide loading spinner
-      if (data.ok) {
-        // Show success message
-        sentMessage.style.display = 'block';
+
+      if (!response.ok) {
+        // Handle cases where the response is not "ok" but the request was made successfully
+        console.error('Response not OK:', response.statusText);
+        errorMessage.textContent = 'There was an issue with the Telegram API. Response not OK.';
+        errorMessage.style.display = 'block';
       } else {
-        // Handle failure silently (you can log the error for debugging)
-        console.error('Error sending message to Telegram: ', data.description);
-        errorMessage.textContent = 'There was a problem sending the message. Please try again.';
+        return response.json(); // Convert response to JSON if OK
+      }
+    })
+    .then(data => {
+      if (data && data.ok) {
+        // If the API response is successful, show the success message
+        sentMessage.style.display = 'block';
+      } else if (data && !data.ok) {
+        // If the API responded but there's still an issue
+        console.error('Telegram API returned an error:', data.description);
+        errorMessage.textContent = `Error sending message to Telegram: ${data.description}`;
         errorMessage.style.display = 'block';
       }
     })
     .catch(error => {
       loading.style.display = 'none'; // Hide loading spinner
-      // Handle network errors silently, log it in the console
-      console.error('Error fetching Telegram API:', error);
-      errorMessage.textContent = 'There was a problem connecting to the server. Please try again later.';
+
+      // Handle network errors or unexpected exceptions
+      console.error('Error sending request to Telegram API:', error);
+      errorMessage.textContent = 'There was a network error. Please try again later.';
       errorMessage.style.display = 'block';
     });
 });
