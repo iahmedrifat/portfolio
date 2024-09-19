@@ -850,17 +850,19 @@
 
                 <div class="name-box">
                   <label for="website">Website Name:</label>
-                  <input type="text" id="website" placeholder="https://yourwebsite.com">
+                  <input type="text" id="website">
                 </div>
 
-                <div class="name-box">
-                  <label for="phone">Contact Number:</label>
-                  <input type="tel" name="phone" id="phone" placeholder="Optional">
-                </div>
+                <div class="emailxphone">
+                  <div class="name-box">
+                    <label for="phone">Contact Number:</label>
+                    <input type="tel" id="phone">
+                  </div>
 
-                <div class="name-box">
-                  <label for="email">Email:</label>
-                  <input type="email" id="email" required>
+                  <div class="name-box">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                  </div>
                 </div>
 
                 <div class="name-box">
@@ -972,6 +974,12 @@
     .name-box {
       display: flex;
       flex-direction: column;
+    }
+
+    .emailxphone {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
   </style>
 </body>
