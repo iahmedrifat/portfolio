@@ -869,11 +869,15 @@
                   <label for="message">Message:</label>
                   <textarea id="message" rows="4" required></textarea>
                 </div>
-
-                <button type="submit">Send</button>
+                <div class="name-box">
+                  <p id="status"></p>
+                </div>
+                <div class="name-box">
+                  <button type="submit">Send</button>
+                </div>
               </div>
             </form>
-            <p id="status"></p>
+
           </div><!--End Contact Form-->
 
         </div>
@@ -974,12 +978,21 @@
     .name-box {
       display: flex;
       flex-direction: column;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      margin-bottom: 20px;
     }
 
     .emailxphone {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      gap: 20px;
+    }
+
+    .name-box p {
+      text-align: center;
     }
   </style>
 </body>
