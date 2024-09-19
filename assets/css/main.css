@@ -1109,6 +1109,7 @@ section,
 
 .contact .php-email-formx input[type="text"],
 .contact .php-email-formx input[type="email"],
+.contact .php-email-formx input[type="tel"],
 .contact .php-email-formx textarea {
   font-size: 14px;
   padding: 10px 15px;
