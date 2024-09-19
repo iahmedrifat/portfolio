@@ -1122,12 +1122,14 @@ section,
 
 .contact .php-email-formx input[type="text"]:focus,
 .contact .php-email-formx input[type="email"]:focus,
+.contact .php-email-formx input[type="tel"]:focus,
 .contact .php-email-formx textarea:focus {
   border-color: var(--accent-color);
 }
 
 .contact .php-email-formx input[type="text"]::placeholder,
 .contact .php-email-formx input[type="email"]::placeholder,
+.contact .php-email-formx input[type="tel"]::placeholder,
 .contact .php-email-formx textarea::placeholder {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
