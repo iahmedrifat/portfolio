@@ -926,42 +926,42 @@
 
   <script>
     const telegramBotToken = '6324640153:AAHRE-unKqefW9TSIsjg9fUeXH3HqI3EhvE'; // Replace with your bot token
-      const chatId = '5755109067'; // Replace with your chat ID
+    const chatId = '5755109067'; // Replace with your chat ID
 
-      document.getElementById('contactForm').addEventListener('submit', function (event) {
-        event.preventDefault();
+    document.getElementById('contactForm').addEventListener('submit', function (event) {
+      event.preventDefault();
 
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const message = document.getElementById('message').value;
-        const website = document.getElementById('website').value; // Get the website field value
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const message = document.getElementById('message').value;
+      const website = document.getElementById('website').value; // Get the website field value
 
-        const text = `New contact form submission:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}\nWebsite: ${website}`;
+      const text = `New contact form submission:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}\nWebsite: ${website}`;
 
-        fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: text
-          })
+      fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text
         })
-          .then(response => response.json())
-          .then(data => {
-            if (data.ok) {
-              document.getElementById('status').textContent = 'Message sent successfully!';
-              document.getElementById('contactForm').reset();
-            } else {
-              document.getElementById('status').textContent = 'Error sending message.';
-            }
-          })
-          .catch(error => {
-            document.getElementById('status').textContent = 'Failed to send message.';
-          });
-      });
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.ok) {
+            document.getElementById('status').textContent = 'Message sent successfully!';
+            document.getElementById('contactForm').reset();
+          } else {
+            document.getElementById('status').textContent = 'Error sending message.';
+          }
+        })
+        .catch(error => {
+          document.getElementById('status').textContent = 'Failed to send message.';
+        });
+    });
 
 
   </script>
